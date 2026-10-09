@@ -15,7 +15,7 @@ from booklet import PRINTING_INSTRUCTIONS, build_booklet
 def sources(root):
     papers = [p for year in root.iterdir() if year.is_dir() and re.fullmatch(r'20\d{2}', year.name)
               for p in year.glob('*.typ') if p.name in (year.name + '.typ', year.name + '-答案.typ')]
-    samples = list((root / '题型示例').glob('*/*-题型示例.typ'))
+    samples = list((root / '题型示例').glob('*/*-题型示例.typ')) + list((root / '题型示例').glob('*/*-题型示例-答案.typ'))
     materials = list((root / '资料').glob('*.typ'))
     return sorted(papers + samples + materials)
 
@@ -30,7 +30,8 @@ def output_stem(source, root):
         names = {'词汇表': 'vocabulary', '国家与地区': 'country-regions', '大洲与大洋': 'continents-oceans'}
         return '201-' + names[source.stem]
     if relative.parts[0] == '题型示例':
-        return f'{source.stem.split("-", 1)[0]}-201-sample'
+        suffix = '-answers' if source.stem.endswith('-答案') else ''
+        return f'{source.stem.split("-", 1)[0]}-201-sample{suffix}'
     raise ValueError(f'Unsupported source: {relative}')
 
 

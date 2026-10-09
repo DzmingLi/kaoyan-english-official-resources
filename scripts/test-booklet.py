@@ -167,6 +167,7 @@ class ReleaseTests(unittest.TestCase):
         expected = {
             '2024/2024.typ': '2024-201',
             '2024/2024-答案.typ': '2024-201-answers',
+            '题型示例/2025/2025-题型示例-答案.typ': '2025-201-sample-answers',
             '题型示例/2026/2026-题型示例.typ': '2026-201-sample',
             '题型示例/旧版/2013-题型示例.typ': '2013-201-sample',
         }

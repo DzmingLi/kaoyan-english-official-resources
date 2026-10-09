@@ -1,6 +1,6 @@
 #+TITLE: 考研英语（一）201
 
-2023、2024 年英语（一）试题与参考答案，以及 2025 考纲词汇与地理名称。
+2023、2024 年英语（一）试题与参考答案、2025 考纲题型示例及参考答案和评分参考，以及考纲词汇与地理名称。
 试题字号 11pt，英文 Times New Roman；Part A 每篇文章与题目通过 pagebreak 分页。
 
 * 构建
@@ -9,7 +9,7 @@ nix build .#pdfs
 nix develop
 #+end_src
 
-默认分支更新自动构建，校验 SHA256 后发布至 [[https://github.com/DzmingLi/201-zhenti/releases/tag/pdf-latest][pdf-latest]]。
+默认分支更新自动构建，校验 SHA256 后发布至 [[https://github.com/DzmingLi/kaoyan-english-official-resources/releases/tag/pdf-latest][pdf-latest]]。
 阅读版与小册子打印版均提供单独 PDF 和 ZIP。打印方法见发布附件 PRINTING.txt。
 
 * Org 双栏

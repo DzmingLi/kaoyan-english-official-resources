@@ -138,7 +138,7 @@
 
   set page(footer-descent: 17pt,
     footer: align(center, text(font: "FZShuSong-Z01S", size: 9pt)[
-      #subject #if sample [题型示例] else if solutions [参考答案] else [试题]　
+      #subject #if solutions [参考答案] else if sample [题型示例] else [试题]　
       第 #context counter(page).display() 页（共 #context counter(page).at(<exam-body-end>).first() 页）
     ]))
   let plain(c) = {

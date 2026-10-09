@@ -1,8 +1,8 @@
 // 参考 /home/lee/408-zhenti/template.typ 的封面、科目代码与页脚。
 #import "template-base.typ": exam
 #import "@preview/ezexam:0.3.1" as ezexam
-#let english-exam(year: 2023, solutions: false, body) = {
-  show: exam.with(year: year, subject: "英语（一）", code: "201", solutions: solutions, cover: not solutions)
+#let english-exam(year: 2023, solutions: false, title: none, sample: false, body) = {
+  show: exam.with(year: year, subject: "英语（一）", code: "201", solutions: solutions, cover: not solutions, title: title, sample: sample)
   set page(width: 176mm, height: 250mm, margin: 17mm)
   set text(font: ("Times New Roman", "FZShuSong-Z01S"), size: 11pt, lang: "en")
   set par(justify: true, leading: 5pt, spacing: 6pt, first-line-indent: 1em)
