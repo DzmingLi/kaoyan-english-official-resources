@@ -24,7 +24,7 @@ def release_files(records):
     return ({r['pdf'] for r in records}
             | {r['booklet']['pdf'] for r in records if 'booklet' in r}
             | {'manifest.json', 'SHA256SUMS', 'PRINTING.txt', 'past-exams.zip',
-               'sample-exams.zip', 'past-exams-print.zip', 'resources.zip'})
+               'sample-exams.zip', 'past-exams-print.zip', 'resources.zip', 'sample-exams-print.zip'})
 
 
 def main():
@@ -48,9 +48,9 @@ def main():
         return
     releases = json.loads(gh('api', f'repos/{repo}/releases?per_page=100'))
     existing = next((r for r in releases if r['tag_name'] == tag), None)
-    notes = (f'由提交 {commit} 自动生成，共 {len(records)} 份阅读版和 {sum("booklet" in r for r in records)} 份真题小册子打印版 PDF。\n\n'
-             '各 PDF 可单独下载；past-exams.zip 收录历年真题与答案，sample-exams.zip 收录样卷与答案，resources.zip 收录 Org 资料。样卷与资料均为 A4 PDF。'
-             'past-exams-print.zip 为真题小册子打印版，PDF 文件名以 -print.pdf 结尾。'
+    notes = (f'由提交 {commit} 自动生成，共 {len(records)} 份阅读版和 {sum("booklet" in r for r in records)} 份试卷小册子打印版 PDF。\n\n'
+             '各 PDF 可单独下载；past-exams.zip 收录历年真题与答案，sample-exams.zip 收录样卷与答案，resources.zip 收录 Org 资料。Org 资料为普通 A4 PDF；真题及样卷提供阅读版和小册子打印版。'
+             'past-exams-print.zip 和 sample-exams-print.zip 为对应试卷的小册子打印版，PDF 文件名以 -print.pdf 结尾。'
              '打印版使用 ISO B4 横向纸张，100% 打印、双面短边翻转；请先阅读 PRINTING.txt。'
              'manifest.json 记录源文件对应关系，SHA256SUMS 提供校验。\n')
     with tempfile.TemporaryDirectory() as tmp:

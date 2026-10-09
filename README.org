@@ -10,8 +10,8 @@ nix develop
 #+end_src
 
 默认分支更新自动构建，校验 SHA256 后发布至 [[https://github.com/DzmingLi/kaoyan-english1-official-resources/releases/tag/pdf-latest][pdf-latest]]。
-只有历年真题及答案提供小册子打印版。样卷及 Org 资料仅导出普通 A4 PDF，不生成 -print.pdf。
-past-exams.zip 收录真题与答案，past-exams-print.zip 收录真题打印版；sample-exams.zip 收录样卷与答案，resources.zip 收录 Org 资料。打印方法见发布附件 PRINTING.txt。
+历年真题、样卷及其答案均提供 B5 阅读版和小册子打印版。只有 Org 资料仅导出普通 A4 PDF，不生成 -print.pdf。
+past-exams.zip 收录真题与答案，past-exams-print.zip 收录真题打印版；sample-exams.zip 收录样卷与答案，sample-exams-print.zip 收录样卷打印版；resources.zip 收录 Org 资料。打印方法见发布附件 PRINTING.txt。
 
 * Org 双栏
 只有词汇表使用双栏 Org 列表；国家与地区使用三列表格，大洲与大洋使用两列表格。词汇表的 #+LATEX_CLASS_OPTIONS: [a4paper,11pt,twocolumn] 设置页面双栏，HTML 导出使用 column-count:2。

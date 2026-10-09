@@ -37,7 +37,7 @@ def output_stem(source, root):
 
 def has_booklet(source, root):
     relative = source.relative_to(root)
-    return len(relative.parts) > 1 and re.fullmatch(r'20\d{2}', relative.parts[0]) is not None
+    return len(relative.parts) > 1 and (re.fullmatch(r'20\d{2}', relative.parts[0]) is not None or relative.parts[0] == '题型示例')
 
 
 def print_cover_blanks(source):
@@ -102,13 +102,13 @@ def main():
     (output / 'PRINTING.txt').write_text(PRINTING_INSTRUCTIONS, encoding='utf-8')
     managed = [r['pdf'] for r in records] + [r['booklet']['pdf'] for r in records if 'booklet' in r]
     managed += ['manifest.json', 'PRINTING.txt']
-    for group, printing in [('past-exams', False), ('past-exams', True), ('sample-exams', False), ('resources', False)]:
+    for group, printing in [('past-exams', False), ('past-exams', True), ('sample-exams', False), ('sample-exams', True), ('resources', False)]:
         archive_name = group + ('-print' if printing else '') + '.zip'
         managed.append(archive_name)
         with zipfile.ZipFile(output / archive_name, 'w', compression=zipfile.ZIP_DEFLATED) as archive:
             for record in records:
-                category = ('past-exams' if 'booklet' in record else
-                            'sample-exams' if record['source'].startswith('题型示例/') else 'resources')
+                category = ('sample-exams' if record['source'].startswith('题型示例/') else
+                            'past-exams' if 'booklet' in record else 'resources')
                 if category == group:
                     filename = record['booklet']['pdf'] if printing else record['pdf']
                     info = zipfile.ZipInfo(filename, date_time=(1980, 1, 1, 0, 0, 0))

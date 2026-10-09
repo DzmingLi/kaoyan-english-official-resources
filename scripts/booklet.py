@@ -11,7 +11,7 @@ PAGE_HEIGHT = 250 * MM
 SHEET_WIDTH = 353 * MM
 SHEET_HEIGHT = 250 * MM
 
-PRINTING_INSTRUCTIONS = """408 小册子打印版
+PRINTING_INSTRUCTIONS = """英语（一）201 小册子打印版
 
 阅读版：ISO B5，试卷和题型示例在封面之后直接进入正文；参考答案无封面。
 所有阅读版都没有人工补入的空白页。

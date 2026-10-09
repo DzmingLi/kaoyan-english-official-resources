@@ -49,7 +49,7 @@
 ) = {
   let title = if title != none { title } else { str(year) + "年全国硕士研究生招生考试" }
   set document(title: title + " " + subject, date: none)
-  set page(width: if sample { 210mm } else { 176mm }, height: if sample { 297mm } else { 250mm }, margin: paper-margin,
+  set page(width: 176mm, height: 250mm, margin: paper-margin,
     header: none, footer: none)
   set text(font: ("FZShuSong-Z01S"), size: 10.5pt,
     lang: "zh", top-edge: "bounds", bottom-edge: "bounds")
@@ -294,7 +294,7 @@
 
 #let english-exam(year: 2023, solutions: false, title: none, sample: false, body) = {
   show: exam.with(year: year, subject: "英语（一）", code: "201", solutions: solutions, cover: not solutions, title: title, sample: sample)
-  set page(width: if sample { 210mm } else { 176mm }, height: if sample { 297mm } else { 250mm }, margin: 17mm)
+  set page(width: 176mm, height: 250mm, margin: 17mm)
   set text(font: ("Times New Roman", "FZShuSong-Z01S"), size: 11pt, lang: "en")
   set par(justify: true, leading: 5pt, spacing: 6pt, first-line-indent: 1em)
   set heading(numbering: none)
