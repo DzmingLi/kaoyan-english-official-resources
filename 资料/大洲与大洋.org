@@ -1,0 +1,28 @@
+#+TITLE: 大洲名和大洋名
+#+LANGUAGE: zh-CN
+#+OPTIONS: toc:nil num:nil
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [a4paper,11pt,twocolumn]
+#+LATEX_COMPILER: xelatex
+#+LATEX_HEADER: \usepackage[fontset=none]{ctex}
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{Times New Roman}
+#+LATEX_HEADER: \setCJKmainfont{FZShuSong-Z01S}
+#+LATEX_HEADER: \setlength{\columnsep}{12mm}
+#+HTML_HEAD: <style>#content {column-count:2; column-gap:2em} li {break-inside:avoid; margin-bottom:.4em}</style>
+#+DESCRIPTION: 原书附录 1，OCR 转录；保留原词及相关信息。
+
+* 大洲名
+- Africa；形容词：African
+- Antarctica；形容词：Antarctic
+- Asia；形容词：Asian
+- Europe；形容词：European
+- North America；形容词：North American
+- South America；形容词：South American
+- Oceania；形容词：Oceanian, Oceanic
+
+* 大洋名
+- the Arctic Ocean；形容词：Arctic
+- the Atlantic Ocean；形容词：Atlantic
+- the Indian Ocean
+- the Pacific Ocean；形容词：Pacific

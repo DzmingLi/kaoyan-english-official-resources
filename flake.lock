@@ -1,0 +1,65 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1791260994,
+        "narHash": "sha256-Miqqk/ammqnTUxaoCyvtwoPeLbI1ksFyLxi/CazZpWY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "151fa4e8ddfdd8dd25d945ad94ed54a13de9f6e4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nur-fonts": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1791427951,
+        "narHash": "sha256-rwNsB528Hb4qfhfS3nlZJPWVXjg/qRu4nxrQod5eHic=",
+        "owner": "DzmingLi",
+        "repo": "nur-packages",
+        "rev": "f99e878d32ceb7ea0dc36cf52ccede9ec904ff76",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DzmingLi",
+        "repo": "nur-packages",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "nur-fonts": "nur-fonts",
+        "typix": "typix"
+      }
+    },
+    "typix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791387925,
+        "narHash": "sha256-x53Wu3PeFR7BedYXuYyPy1yHXXdRv5JWXg+GKQeODEk=",
+        "owner": "loqusion",
+        "repo": "typix",
+        "rev": "42aed6360ddbd2a5432bd790f85e4c803dbddf5f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "loqusion",
+        "repo": "typix",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

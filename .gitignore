@@ -1,0 +1,6 @@
+result
+.build/
+*.pdf
+__pycache__/
+资料/*.typ
+资料/*.tex

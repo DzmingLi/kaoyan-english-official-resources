@@ -1,0 +1,23 @@
+#+TITLE: 考研英语（一）201
+
+2023、2024 年英语（一）试题与参考答案，以及 2025 考纲词汇与地理名称。
+试题字号 11pt，英文 Times New Roman；Part A 每篇文章与题目通过 pagebreak 分页。
+
+* 构建
+#+begin_src sh
+nix build .#pdfs
+nix develop
+#+end_src
+
+默认分支更新自动构建，校验 SHA256 后发布至 [[https://github.com/DzmingLi/201-zhenti/releases/tag/pdf-latest][pdf-latest]]。
+阅读版与小册子打印版均提供单独 PDF 和 ZIP。打印方法见发布附件 PRINTING.txt。
+
+* Org 双栏
+词汇资料使用 Org 列表；#+LATEX_CLASS_OPTIONS: [a4paper,11pt,twocolumn] 设置页面双栏，HTML 导出使用 column-count:2。
+可以在 Emacs 中用 C-c C-e l p 导出 LaTeX PDF，需要 XeLaTeX、ctex、Times New Roman 和方正书宋。
+CI 从同一 Org 内容生成 Typst 双栏预览，因此无需安装 TeX。
+
+* 来源与校对
+内容来自用户提供的《2025年全国硕士研究生招生考试英语（一）考试大纲》。
+扫描内容通过 GLM-OCR 逐栏转录，仍可能存在识别误差；仓库不保存原书扫描件、OCR 凭证或接口响应。
+词汇表原书只有英文词条，不增加未经原书提供的释义。
