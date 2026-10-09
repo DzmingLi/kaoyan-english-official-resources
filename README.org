@@ -13,9 +13,9 @@ nix develop
 阅读版与小册子打印版均提供单独 PDF 和 ZIP。打印方法见发布附件 PRINTING.txt。
 
 * Org 双栏
-词汇资料使用 Org 列表；#+LATEX_CLASS_OPTIONS: [a4paper,11pt,twocolumn] 设置页面双栏，HTML 导出使用 column-count:2。
+只有词汇表使用双栏 Org 列表；国家与地区使用三列表格，大洲与大洋使用两列表格。词汇表的 #+LATEX_CLASS_OPTIONS: [a4paper,11pt,twocolumn] 设置页面双栏，HTML 导出使用 column-count:2。
 可以在 Emacs 中用 C-c C-e l p 导出 LaTeX PDF，需要 XeLaTeX、ctex、Times New Roman 和方正书宋。
-CI 从同一 Org 内容生成 Typst 双栏预览，因此无需安装 TeX。
+CI 从同一 Org 内容生成 Typst 预览（词汇双栏，其余为表格），因此无需安装 TeX。
 
 * 来源与校对
 内容来自用户提供的《2025年全国硕士研究生招生考试英语（一）考试大纲》。

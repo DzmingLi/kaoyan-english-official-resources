@@ -2,71 +2,71 @@
 #+LANGUAGE: zh-CN
 #+OPTIONS: toc:nil num:nil
 #+LATEX_CLASS: article
-#+LATEX_CLASS_OPTIONS: [a4paper,11pt,twocolumn]
+#+LATEX_CLASS_OPTIONS: [a4paper,11pt]
 #+LATEX_COMPILER: xelatex
 #+LATEX_HEADER: \usepackage[fontset=none]{ctex}
 #+LATEX_HEADER: \usepackage{fontspec}
 #+LATEX_HEADER: \setmainfont{Times New Roman}
 #+LATEX_HEADER: \setCJKmainfont{FZShuSong-Z01S}
-#+LATEX_HEADER: \setlength{\columnsep}{12mm}
-#+HTML_HEAD: <style>#content {column-count:2; column-gap:2em} li {break-inside:avoid; margin-bottom:.4em}</style>
 #+DESCRIPTION: 原书附录 1，OCR 转录；保留原词及相关信息。
 
-- Afghanistan；形容词：Afghan；人：Afghan
-- Algeria；形容词：Algerian；人：Algerian
-- Argentina；形容词：Argentinian；人：Argentinian
-- Australia；形容词：Australian；人：Australian
-- Austria；形容词：Austrian；人：Austrian
-- Belgium；形容词：Belgian；人：Belgian
-- Brazil；形容词：Brazilian；人：Brazilian
-- Canada；形容词：Canadian；人：Canadian
-- China；形容词：Chinese；人：Chinese
-- Colombia；形容词：Colombian；人：Colombian
-- Cuba；形容词：Cuban；人：Cuban
-- Denmark；形容词：Danish；人：Dane
-- Egypt；形容词：Egyptian；人：Egyptian
-- England；形容词：English；人：Englishman, Englishwoman; the English
-- Finland；形容词：Finnish；人：Finn
-- France；形容词：French；人：Frenchman, Frenchwoman; the French
-- Germany；形容词：German；人：German
-- Greece；形容词：Greek；人：Greek
-- Hungary；形容词：Hungarian；人：Hungarian
-- India；形容词：Indian；人：Indian
-- Indonesia；形容词：Indonesian；人：Indonesian
-- Iran；形容词：Iranian；人：Iranian
-- Iraq；形容词：Iraqi；人：Iraqi
-- Ireland；形容词：Irish；人：Irishman, Irishwoman; the Irish
-- Israel；形容词：Israeli；人：Israeli
-- Italy；形容词：Italian；人：Italian
-- Japan；形容词：Japanese；人：Japanese
-- Jordan；形容词：Jordanian；人：Jordanian
-- Kenya；形容词：Kenyan；人：Kenyan
-- the Democratic People's Republic of Korea；形容词：Korean；人：Korean
-- the Republic of Korea；形容词：Korean；人：Korean
-- Kuwait；形容词：Kuwaiti；人：Kuwaiti
-- Lebanon；形容词：Lebanese；人：Lebanese
-- Luxembourg；形容词：Luxembourg；人：Luxembourger
-- Malaysia；形容词：Malaysian；人：Malaysian
-- Mexico；形容词：Mexican；人：Mexican
-- Myanmar；形容词：Burmese；人：Burmese
-- the Netherlands；形容词：Dutch；人：Dutchman, Dutchwoman; the Dutch
-- New Zealand；形容词：New Zealand；人：New Zealander
-- Norway；形容词：Norwegian；人：Norwegian
-- Pakistan；形容词：Pakistani；人：Pakistani
-- Panama；形容词：Panamanian；人：Panamanian
-- the Philippines；形容词：Philippine；人：Filipino
-- Poland；形容词：Polish；人：Pole
-- Portugal；形容词：Portuguese；人：Portuguese
-- Russia；形容词：Russian；人：Russian
-- Scotland；形容词：Scottish；人：Scot (Scotsman, Scotswoman); the Scots
-- Singapore；形容词：Singaporean；人：Singaporean
-- South Africa；形容词：South African；人：South African
-- Spain；形容词：Spanish；人：Spaniard; the Spanish
-- Sweden；形容词：Swedish；人：Swede; the Swedish
-- Switzerland；形容词：Swiss；人：Swiss
-- Thailand；形容词：Thai；人：Thai
-- Turkey/Türkiye；形容词：Turkish；人：Turk
-- the United Kingdom/Great Britain；形容词：British；人：Briton; the British
-- the United States(of America)/America；形容词：American；人：American
-- Vietnam；形容词：Vietnamese；人：Vietnamese
-- Wales；形容词：Welsh；人：Welshman, Welshwoman; the Welsh
+| 国家（或地区） | 形容词 | 人 |
+|---------------+--------+----|
+| Afghanistan | Afghan | Afghan |
+| Algeria | Algerian | Algerian |
+| Argentina | Argentinian | Argentinian |
+| Australia | Australian | Australian |
+| Austria | Austrian | Austrian |
+| Belgium | Belgian | Belgian |
+| Brazil | Brazilian | Brazilian |
+| Canada | Canadian | Canadian |
+| China | Chinese | Chinese |
+| Colombia | Colombian | Colombian |
+| Cuba | Cuban | Cuban |
+| Denmark | Danish | Dane |
+| Egypt | Egyptian | Egyptian |
+| England | English | Englishman, Englishwoman; the English |
+| Finland | Finnish | Finn |
+| France | French | Frenchman, Frenchwoman; the French |
+| Germany | German | German |
+| Greece | Greek | Greek |
+| Hungary | Hungarian | Hungarian |
+| India | Indian | Indian |
+| Indonesia | Indonesian | Indonesian |
+| Iran | Iranian | Iranian |
+| Iraq | Iraqi | Iraqi |
+| Ireland | Irish | Irishman, Irishwoman; the Irish |
+| Israel | Israeli | Israeli |
+| Italy | Italian | Italian |
+| Japan | Japanese | Japanese |
+| Jordan | Jordanian | Jordanian |
+| Kenya | Kenyan | Kenyan |
+| the Democratic People's Republic of Korea | Korean | Korean |
+| the Republic of Korea | Korean | Korean |
+| Kuwait | Kuwaiti | Kuwaiti |
+| Lebanon | Lebanese | Lebanese |
+| Luxembourg | Luxembourg | Luxembourger |
+| Malaysia | Malaysian | Malaysian |
+| Mexico | Mexican | Mexican |
+| Myanmar | Burmese | Burmese |
+| the Netherlands | Dutch | Dutchman, Dutchwoman; the Dutch |
+| New Zealand | New Zealand | New Zealander |
+| Norway | Norwegian | Norwegian |
+| Pakistan | Pakistani | Pakistani |
+| Panama | Panamanian | Panamanian |
+| the Philippines | Philippine | Filipino |
+| Poland | Polish | Pole |
+| Portugal | Portuguese | Portuguese |
+| Russia | Russian | Russian |
+| Scotland | Scottish | Scot (Scotsman, Scotswoman); the Scots |
+| Singapore | Singaporean | Singaporean |
+| South Africa | South African | South African |
+| Spain | Spanish | Spaniard; the Spanish |
+| Sweden | Swedish | Swede; the Swedish |
+| Switzerland | Swiss | Swiss |
+| Thailand | Thai | Thai |
+| Turkey/Türkiye | Turkish | Turk |
+| the United Kingdom/Great Britain | British | Briton; the British |
+| the United States(of America)/America | American | American |
+| Vietnam | Vietnamese | Vietnamese |
+| Wales | Welsh | Welshman, Welshwoman; the Welsh |
