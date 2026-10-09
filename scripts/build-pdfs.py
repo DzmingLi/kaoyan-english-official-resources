@@ -35,6 +35,11 @@ def output_stem(source, root):
     raise ValueError(f'Unsupported source: {relative}')
 
 
+def has_booklet(source, root):
+    relative = source.relative_to(root)
+    return len(relative.parts) > 1 and re.fullmatch(r'20\d{2}', relative.parts[0]) is not None
+
+
 def print_cover_blanks(source):
     """Answer documents have no cover; only pad them to a multiple of four."""
     has_cover = not source.stem.endswith('-答案') and not source.with_suffix('.org').exists()
@@ -46,7 +51,7 @@ def main():
     parser.add_argument('--root', type=Path, default=Path.cwd())
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--jobs', type=int, default=4)
-    parser.add_argument('--only', help='Preview one reading/print pair; do not update release metadata')
+    parser.add_argument('--only', help='Preview one source; do not update release metadata')
     args = parser.parse_args()
     root, output = args.root.resolve(), args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
@@ -67,13 +72,15 @@ def main():
             raise RuntimeError(f'{relative}\n{result.stderr}')
         if result.stderr:
             print(f'{relative}\n{result.stderr}', file=sys.stderr, flush=True)
-        print_target = output / (stem + '-print.pdf')
-        layout = build_booklet(target, print_target, **print_cover_blanks(source))
-        return {'source': relative.as_posix(), 'pdf': target.name,
-                'sha256': hashlib.sha256(target.read_bytes()).hexdigest(),
-                'booklet': {'pdf': print_target.name,
-                            'sha256': hashlib.sha256(print_target.read_bytes()).hexdigest(),
-                            **layout}}
+        record = {'source': relative.as_posix(), 'pdf': target.name,
+                  'sha256': hashlib.sha256(target.read_bytes()).hexdigest()}
+        if has_booklet(source, root):
+            print_target = output / (stem + '-print.pdf')
+            layout = build_booklet(target, print_target, **print_cover_blanks(source))
+            record['booklet'] = {'pdf': print_target.name,
+                                 'sha256': hashlib.sha256(print_target.read_bytes()).hexdigest(),
+                                 **layout}
+        return record
 
     records, failed = [], False
     with ThreadPoolExecutor(max_workers=max(1, args.jobs)) as executor:
@@ -81,7 +88,7 @@ def main():
         for future in as_completed(futures):
             try:
                 records.append(future.result())
-                print(f'Compiled reading/print pair {len(records)}/{len(selected)}', flush=True)
+                print(f'Compiled PDF source {len(records)}/{len(selected)}', flush=True)
             except Exception as error:
                 print(error, file=sys.stderr, flush=True)
                 failed = True
@@ -93,29 +100,29 @@ def main():
     records.sort(key=lambda r: r['source'])
     (output / 'manifest.json').write_text(json.dumps(records, ensure_ascii=False, indent=2) + '\n')
     (output / 'PRINTING.txt').write_text(PRINTING_INSTRUCTIONS, encoding='utf-8')
-    managed = [r['pdf'] for r in records] + [r['booklet']['pdf'] for r in records]
+    managed = [r['pdf'] for r in records] + [r['booklet']['pdf'] for r in records if 'booklet' in r]
     managed += ['manifest.json', 'PRINTING.txt']
-    for group in ('past-exams', 'sample-exams'):
-        for printing in (False, True):
-            archive_name = group + ('-print' if printing else '') + '.zip'
-            managed.append(archive_name)
-            with zipfile.ZipFile(output / archive_name, 'w', compression=zipfile.ZIP_DEFLATED) as archive:
-                for record in records:
-                    sample = record['source'].startswith('题型示例/')
-                    if sample == (group == 'sample-exams'):
-                        filename = record['booklet']['pdf'] if printing else record['pdf']
-                        info = zipfile.ZipInfo(filename, date_time=(1980, 1, 1, 0, 0, 0))
-                        info.compress_type = zipfile.ZIP_DEFLATED
-                        info.external_attr = 0o100644 << 16
-                        archive.writestr(info, (output / filename).read_bytes())
-                if printing:
-                    info = zipfile.ZipInfo('PRINTING.txt', date_time=(1980, 1, 1, 0, 0, 0))
+    for group, printing in [('past-exams', False), ('past-exams', True), ('sample-exams', False), ('resources', False)]:
+        archive_name = group + ('-print' if printing else '') + '.zip'
+        managed.append(archive_name)
+        with zipfile.ZipFile(output / archive_name, 'w', compression=zipfile.ZIP_DEFLATED) as archive:
+            for record in records:
+                category = ('past-exams' if 'booklet' in record else
+                            'sample-exams' if record['source'].startswith('题型示例/') else 'resources')
+                if category == group:
+                    filename = record['booklet']['pdf'] if printing else record['pdf']
+                    info = zipfile.ZipInfo(filename, date_time=(1980, 1, 1, 0, 0, 0))
                     info.compress_type = zipfile.ZIP_DEFLATED
                     info.external_attr = 0o100644 << 16
-                    archive.writestr(info, PRINTING_INSTRUCTIONS.encode('utf-8'))
+                    archive.writestr(info, (output / filename).read_bytes())
+            if printing:
+                info = zipfile.ZipInfo('PRINTING.txt', date_time=(1980, 1, 1, 0, 0, 0))
+                info.compress_type = zipfile.ZIP_DEFLATED
+                info.external_attr = 0o100644 << 16
+                archive.writestr(info, PRINTING_INSTRUCTIONS.encode('utf-8'))
     checksums = [f'{hashlib.sha256((output / name).read_bytes()).hexdigest()}  {name}' for name in sorted(managed)]
     (output / 'SHA256SUMS').write_text('\n'.join(checksums) + '\n')
-    print(f'Built {len(records)} reading PDFs and {len(records)} print PDFs in {output}', flush=True)
+    print(f'Built {len(records)} reading PDFs and {sum("booklet" in r for r in records)} print PDFs in {output}', flush=True)
 
 
 if __name__ == '__main__':

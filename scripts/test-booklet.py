@@ -161,6 +161,16 @@ class ReleaseTests(unittest.TestCase):
             self.assertEqual(module['print_cover_blanks'](Path(source)),
                              {'cover_back_blank': True, 'back_cover_blank': True})
 
+    def test_only_historical_papers_get_booklets(self):
+        module = runpy.run_path(str(Path(__file__).with_name('build-pdfs.py')))
+        root = Path('/sources')
+        for source, expected in [('2024/2024.typ', True), ('2024/2024-答案.typ', True),
+                                 ('题型示例/2025/2025-题型示例.typ', False),
+                                 ('题型示例/2025/2025-题型示例-答案.typ', False),
+                                 ('词汇表.typ', False), ('一般评分标准.typ', False)]:
+            with self.subTest(source=source):
+                self.assertEqual(module['has_booklet'](root / source, root), expected)
+
     def test_math_style_output_names(self):
         module = runpy.run_path(str(Path(__file__).with_name('build-pdfs.py')))
         root = Path('/sources')
@@ -188,10 +198,10 @@ class ReleaseTests(unittest.TestCase):
 
     def test_reading_and_print_assets_are_both_expected(self):
         module = runpy.run_path(str(Path(__file__).with_name('publish-release.py')))
-        records = [{'pdf': 'reading.pdf', 'booklet': {'pdf': 'reading-print.pdf'}}]
+        records = [{'pdf': 'reading.pdf', 'booklet': {'pdf': 'reading-print.pdf'}}, {'pdf': 'resource.pdf'}]
         self.assertEqual(module['release_files'](records), {
-            'reading.pdf', 'reading-print.pdf', 'manifest.json', 'SHA256SUMS', 'PRINTING.txt',
-            'past-exams.zip', 'sample-exams.zip', 'past-exams-print.zip', 'sample-exams-print.zip',
+            'reading.pdf', 'reading-print.pdf', 'resource.pdf', 'manifest.json', 'SHA256SUMS', 'PRINTING.txt',
+            'past-exams.zip', 'sample-exams.zip', 'past-exams-print.zip', 'resources.zip',
         })
 
 

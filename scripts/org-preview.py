@@ -42,7 +42,7 @@ for source in sorted(root.glob('*.org')):
     if source.stem == '词汇表':
         body = '#columns(2, gutter: 12mm)[\n' + body + '\n]'
     target = source.with_suffix('.typ')
-    target.write_text('#set page(width: 176mm, height: 250mm, margin: 14mm)\n'
+    target.write_text('#set page(paper: "a4", margin: 17mm)\n'
                       '#set text(font: ("Times New Roman", "FZShuSong-Z01S"), size: 11pt)\n'
                       '#set par(leading: 5pt)\n#set block(spacing: 6pt)\n'
                       '#align(center)[#text(size: 16pt, weight: "bold", ' + quoted(title) + ')]\n'
