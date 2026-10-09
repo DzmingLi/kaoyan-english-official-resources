@@ -49,7 +49,7 @@ def main():
     releases = json.loads(gh('api', f'repos/{repo}/releases?per_page=100'))
     existing = next((r for r in releases if r['tag_name'] == tag), None)
     notes = (f'由提交 {commit} 自动生成，共 {len(records)} 份阅读版和 {len(records)} 份小册子打印版 PDF。\n\n'
-             '各 PDF 可单独下载；past-exams.zip 收录试题、答案及 Org 资料双栏预览，sample-exams.zip 收录题型示例。'
+             '各 PDF 可单独下载；past-exams.zip 收录试题、答案及 Org 资料预览，sample-exams.zip 收录题型示例。'
              '同名 -print.zip 为小册子打印版，PDF 文件名以 -print.pdf 结尾。'
              '打印版使用 ISO B4 横向纸张，100% 打印、双面短边翻转；请先阅读 PRINTING.txt。'
              'manifest.json 记录源文件对应关系，SHA256SUMS 提供校验。\n')

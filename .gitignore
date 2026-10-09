@@ -2,5 +2,8 @@ result
 .build/
 *.pdf
 __pycache__/
-资料/*.typ
-资料/*.tex
+/词汇表.typ
+/国家与地区.typ
+/大洲与大洋.typ
+/一般评分标准.typ
+/*.tex

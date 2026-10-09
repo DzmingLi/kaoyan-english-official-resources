@@ -16,7 +16,7 @@ def sources(root):
     papers = [p for year in root.iterdir() if year.is_dir() and re.fullmatch(r'20\d{2}', year.name)
               for p in year.glob('*.typ') if p.name in (year.name + '.typ', year.name + '-答案.typ')]
     samples = list((root / '题型示例').glob('*/*-题型示例.typ')) + list((root / '题型示例').glob('*/*-题型示例-答案.typ'))
-    materials = list((root / '资料').glob('*.typ'))
+    materials = [p for p in root.glob('*.typ') if p.with_suffix('.org').exists() and p.stem != 'README']
     return sorted(papers + samples + materials)
 
 
@@ -26,7 +26,7 @@ def output_stem(source, root):
     if re.fullmatch(r'20\d{2}', relative.parts[0]):
         suffix = '-answers' if source.stem.endswith('-答案') else ''
         return f'{relative.parts[0]}-201{suffix}'
-    if relative.parts[0] == '资料':
+    if len(relative.parts) == 1:
         names = {'词汇表': 'vocabulary', '国家与地区': 'country-regions', '大洲与大洋': 'continents-oceans', '一般评分标准': 'marking-criteria'}
         return '201-' + names[source.stem]
     if relative.parts[0] == '题型示例':
@@ -37,7 +37,7 @@ def output_stem(source, root):
 
 def print_cover_blanks(source):
     """Answer documents have no cover; only pad them to a multiple of four."""
-    has_cover = not source.stem.endswith('-答案') and source.parent.name != '资料'
+    has_cover = not source.stem.endswith('-答案') and not source.with_suffix('.org').exists()
     return {'cover_back_blank': has_cover, 'back_cover_blank': has_cover}
 
 

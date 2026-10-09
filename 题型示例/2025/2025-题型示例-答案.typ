@@ -1,4 +1,4 @@
-// 来源：同一考纲PDF第42—43页；参考答案。通用评分标准见资料/一般评分标准.org。
+// 来源：同一考纲PDF第42—43页；参考答案。通用评分标准见一般评分标准.org。
 #import "../../template.typ": *
 #show: english-exam.with(year: 2025, title: "2025年全国硕士研究生招生考试", sample: true, solutions: true)
 = 参考答案

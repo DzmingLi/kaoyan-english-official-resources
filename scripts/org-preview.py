@@ -7,7 +7,9 @@ root = Path.cwd()
 def quoted(text):
     return json.dumps(text, ensure_ascii=False)
 
-for source in sorted((root / '资料').glob('*.org')):
+for source in sorted(root.glob('*.org')):
+    if source.name == 'README.org':
+        continue
     content = source.read_text()
     title = re.search(r'^#\+TITLE: (.+)$', content, re.M).group(1)
     lines, rows = [], []
