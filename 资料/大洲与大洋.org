@@ -21,6 +21,9 @@
 - South America；形容词：South American
 - Oceania；形容词：Oceanian, Oceanic
 
+#+LATEX: \newpage
+#+HTML: <div style="break-before:column"></div>
+
 * 大洋名
 - the Arctic Ocean；形容词：Arctic
 - the Atlantic Ocean；形容词：Atlantic
