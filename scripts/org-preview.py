@@ -29,10 +29,12 @@ for source in sorted((root / '资料').glob('*.org')):
                 rows.append([cell.strip() for cell in line.strip().strip('|').split('|')])
             continue
         flush_table()
-        if line.startswith('* '):
-            lines.append('#block(above: 10pt, below: 5pt)[#text(weight: "bold", ' + quoted(line[2:]) + ')]')
+        if re.match(r'^\*+ ', line):
+            lines.append('#block(above: 10pt, below: 5pt)[#text(weight: "bold", ' + quoted(re.sub(r'^\*+ ', '', line)) + ')]')
         elif line.startswith('- '):
             lines.append('#block(above: 0pt, below: 6pt, breakable: false)[#text(' + quoted(line[2:]) + ')]')
+        elif line.strip() and not line.startswith('#+'):
+            lines.append('#block(above: 0pt, below: 6pt)[#text(' + quoted(line) + ')]')
     flush_table()
     body = '\n'.join(lines)
     if source.stem == '词汇表':

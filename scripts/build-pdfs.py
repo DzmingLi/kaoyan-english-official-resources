@@ -27,7 +27,7 @@ def output_stem(source, root):
         suffix = '-answers' if source.stem.endswith('-答案') else ''
         return f'{relative.parts[0]}-201{suffix}'
     if relative.parts[0] == '资料':
-        names = {'词汇表': 'vocabulary', '国家与地区': 'country-regions', '大洲与大洋': 'continents-oceans'}
+        names = {'词汇表': 'vocabulary', '国家与地区': 'country-regions', '大洲与大洋': 'continents-oceans', '一般评分标准': 'marking-criteria'}
         return '201-' + names[source.stem]
     if relative.parts[0] == '题型示例':
         suffix = '-answers' if source.stem.endswith('-答案') else ''
