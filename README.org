@@ -9,7 +9,7 @@ nix build .#pdfs
 nix develop
 #+end_src
 
-默认分支更新自动构建，校验 SHA256 后发布至 [[https://github.com/DzmingLi/kaoyan-english-official-resources/releases/tag/pdf-latest][pdf-latest]]。
+默认分支更新自动构建，校验 SHA256 后发布至 [[https://github.com/DzmingLi/kaoyan-english1-official-resources/releases/tag/pdf-latest][pdf-latest]]。
 阅读版与小册子打印版均提供单独 PDF 和 ZIP。打印方法见发布附件 PRINTING.txt。
 
 * Org 双栏
