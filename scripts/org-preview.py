@@ -30,7 +30,7 @@ for source in sorted((root / '资料').glob('*.org')):
             continue
         flush_table()
         if re.match(r'^\*+ ', line):
-            lines.append('#block(above: 10pt, below: 5pt)[#text(weight: "bold", ' + quoted(re.sub(r'^\*+ ', '', line)) + ')]')
+            lines.append('#block(above: 10pt, below: 5pt, sticky: true)[#text(weight: "bold", ' + quoted(re.sub(r'^\*+ ', '', line)) + ')]')
         elif line.startswith('- '):
             lines.append('#block(above: 0pt, below: 6pt, breakable: false)[#text(' + quoted(line[2:]) + ')]')
         elif line.strip() and not line.startswith('#+'):
