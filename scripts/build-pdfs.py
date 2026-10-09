@@ -27,7 +27,8 @@ def output_stem(source, root):
         suffix = '-answers' if source.stem.endswith('-答案') else ''
         return f'{relative.parts[0]}-201{suffix}'
     if relative.parts[0] == '资料':
-        return '201-' + source.stem
+        names = {'词汇表': 'vocabulary', '国家与地区': 'country-regions', '大洲与大洋': 'continents-oceans'}
+        return '201-' + names[source.stem]
     if relative.parts[0] == '题型示例':
         return f'{source.stem.split("-", 1)[0]}-201-sample'
     raise ValueError(f'Unsupported source: {relative}')

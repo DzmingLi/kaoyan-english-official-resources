@@ -182,6 +182,7 @@ class ReleaseTests(unittest.TestCase):
         names = [module['output_stem'](source, root) for source in module['sources'](root)]
         self.assertTrue(names)
         self.assertEqual(len(names), len(set(names)))
+        self.assertTrue(all(name.isascii() for name in names))
         self.assertFalse(any('答案' in name or '--' in name for name in names))
 
     def test_reading_and_print_assets_are_both_expected(self):

@@ -48,8 +48,8 @@
             unstable_typstPackages = typstPackages;
             nativeBuildInputs = [ pdfPython ];
             buildPhaseTypstCommand = ''
-              python3 scripts/test-booklet.py
               python3 scripts/org-preview.py
+              python3 scripts/test-booklet.py
               python3 scripts/build-pdfs.py --output "$out" --jobs 4
             '';
             installPhaseCommand = "true";

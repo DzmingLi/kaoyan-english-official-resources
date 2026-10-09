@@ -8,10 +8,16 @@ import os
 from pathlib import Path
 import subprocess
 import tempfile
+import sys
+import time
 
 
 def gh(*args):
-    return subprocess.run(['gh', *args], check=True, capture_output=True, text=True).stdout
+    result = subprocess.run(['gh', *args], capture_output=True, text=True)
+    if result.returncode:
+        print(result.stderr, file=sys.stderr)
+        raise subprocess.CalledProcessError(result.returncode, ['gh', *args])
+    return result.stdout
 
 
 def release_files(records):
@@ -43,7 +49,7 @@ def main():
     releases = json.loads(gh('api', f'repos/{repo}/releases?per_page=100'))
     existing = next((r for r in releases if r['tag_name'] == tag), None)
     notes = (f'由提交 {commit} 自动生成，共 {len(records)} 份阅读版和 {len(records)} 份小册子打印版 PDF。\n\n'
-             '各 PDF 可单独下载；past-exams.zip 收录试题和答案，sample-exams.zip 收录题型示例。'
+             '各 PDF 可单独下载；past-exams.zip 收录试题、答案及 Org 资料双栏预览，sample-exams.zip 收录题型示例。'
              '同名 -print.zip 为小册子打印版，PDF 文件名以 -print.pdf 结尾。'
              '打印版使用 ISO B4 横向纸张，100% 打印、双面短边翻转；请先阅读 PRINTING.txt。'
              'manifest.json 记录源文件对应关系，SHA256SUMS 提供校验。\n')
@@ -58,7 +64,14 @@ def main():
         paths = [str(directory / name) for name in sorted(actual)]
         # Chunk uploads to keep command length bounded as the repository grows.
         for start in range(0, len(paths), 40):
-            gh('release', 'upload', tag, *paths[start:start + 40], '--clobber')
+            for attempt in range(3):
+                try:
+                    gh('release', 'upload', tag, *paths[start:start + 40], '--clobber')
+                    break
+                except subprocess.CalledProcessError:
+                    if attempt == 2:
+                        raise
+                    time.sleep(3 * (attempt + 1))
         # Delete removed papers only after every current file has been uploaded.
         assets = json.loads(gh('release', 'view', tag, '--json', 'assets'))['assets']
         for asset in assets:
